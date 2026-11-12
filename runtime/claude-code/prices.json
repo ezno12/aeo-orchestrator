@@ -1,0 +1,59 @@
+{
+  "currency": "USD",
+  "unit": "per million tokens",
+  "as_of": "2026-11-11",
+  "basis": "Anthropic list prices. Cross-checked against Claude Code 2.1.322 costUSD: Haiku (G0 runs) and Sonnet + Opus (routing test R6: computed Sonnet 0.156415 vs reported 0.1564145; Opus 0.184033 vs 0.184033). Transcript-based totals are a lower bound (auxiliary requests not in transcripts, ~0.05-1%).",
+  "cache_multipliers": {
+    "read": 0.1,
+    "write_5m": 1.25,
+    "write_1h": 2
+  },
+  "models": {
+    "claude-haiku-5-5": {
+      "tiers": [
+        {
+          "max_prompt_tokens": 100000,
+          "input": 0.1,
+          "output": 0.5
+        },
+        {
+          "max_prompt_tokens": null,
+          "input": 0.5,
+          "output": 2.5
+        }
+      ]
+    },
+    "claude-sonnet-5-5": {
+      "tiers": [
+        {
+          "max_prompt_tokens": null,
+          "input": 2,
+          "output": 10
+        }
+      ]
+    },
+    "claude-opus-5-5": {
+      "tiers": [
+        {
+          "max_prompt_tokens": null,
+          "input": 4,
+          "output": 20
+        }
+      ]
+    },
+    "claude-fable-5-2": {
+      "tiers": [
+        {
+          "max_prompt_tokens": null,
+          "input": 8,
+          "output": 40
+        }
+      ]
+    }
+  },
+  "tiers_to_models": {
+    "economy": "claude-haiku-5-5",
+    "balanced": "claude-sonnet-5-5",
+    "premium": "claude-opus-5-5"
+  }
+}

@@ -1,0 +1,993 @@
+{
+  "note": "Provenance of every file AEO adapted from upstream. upstream_sha256 is the hash of the original upstream bytes at the pinned commit (re-verified against the plugin cache when this manifest was built); aeo_sha256 is the hash of the current AEO file, so renames and header edits never make provenance ambiguous. Old -> new paths of the 2026-11-11 rename: MIGRATION-MAP.json.",
+  "sources": {
+    "matt": "https://github.com/mattpocock/skills@4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+    "addy": "https://github.com/addyosmani/agent-skills@301b02b12bff98e4688e6984af6556802322bbde"
+  },
+  "files": [
+    {
+      "aeo_path": "methods/testing/test-driven-development.md",
+      "role": "main",
+      "method_id": "test-driven-development",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/tdd/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "969583080caf842ae86a53501a0091eced13fd89cad65d3aa75c09112318ff33",
+      "aeo_sha256": "59dd32ed8987502244ae8ce9bde6241cb3b6b92b3e3e906b5bc363cf2003a616",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Skill-tool references replaced by method paths. In AEO the seams are agreed before Gate 2 (spec \"Testing Decisions\" and the ticket); a subagent uses those seams and stops `blocked` if it needs one that was not agreed, instead of asking the user mid-run.",
+        "Renamed: methods/matt/tdd/METHOD.md -> methods/testing/test-driven-development.md",
+        "2 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/testing/test-driven-development/good-tests.md",
+      "role": "supporting",
+      "method_id": "test-driven-development",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/tdd/tests.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "0b401f98bd3684d2fea6440d6946afcf8f5f68ac6a65599dd7a2b90dd9f02eb5",
+      "aeo_sha256": "19ba3eab5b80e47af9d5ca0d7ed3957d38290d80979e435bcf9dff266d0cf6bf",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/tdd/tests.md -> methods/testing/test-driven-development/good-tests.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/testing/test-driven-development/mocking.md",
+      "role": "supporting",
+      "method_id": "test-driven-development",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/tdd/mocking.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "73a10b6a26b56197c738a764c1e4205af98c74553f4a713795997f6bc35b917d",
+      "aeo_sha256": "f03b318d9a0955561110acde75ce0cbbb58d80d70aae70aac819b7a45e0402bd",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/tdd/mocking.md -> methods/testing/test-driven-development/mocking.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/specification/specification-writing.md",
+      "role": "main",
+      "method_id": "specification-writing",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/to-spec/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "c73a2250beac0479e384f5466e834bb54ce6e30b7f8705e9999ba840d9d59b36",
+      "aeo_sha256": "8a6bac013db58b529cd90c337b5600245986fb1a590cec73b6c76cf73d041092",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Tracker setup points to `methods/discovery/tracker-setup.md`. Seam check: guided mode asks the user; autonomous mode lists the seams as a Gate 2 item. Publishing to a remote tracker (GitHub/GitLab) needs the user's explicit approval. The written spec starts with the AEO provenance line (core/procedures/P1).",
+        "Renamed: methods/matt/to-spec/METHOD.md -> methods/specification/specification-writing.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/planning/ticket-breakdown.md",
+      "role": "main",
+      "method_id": "ticket-breakdown",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/to-tickets/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "b8eb6dca1085e85220b0f5990ed787ebf8a924844d090689f1073b06367e2f7a",
+      "aeo_sha256": "4d260c1507ab997738b0d532ef9e01b931c360bac3796ccb37a9fef5730851f2",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Tracker setup points to `methods/discovery/tracker-setup.md`. AEO adds `Files in scope`, `Verify` and `UI` to each ticket (core/procedures/P2). The \"quiz the user\" step is the Gate 2 review in both modes. Publishing to a remote tracker needs explicit approval.",
+        "Renamed: methods/matt/to-tickets/METHOD.md -> methods/planning/ticket-breakdown.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/requirements-interview.md",
+      "role": "main",
+      "method_id": "requirements-interview",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/productivity/grilling/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "ec91c3f684a0a6323eaf30faa26d3aac5b95f28811eca6d4f108138934063c5c",
+      "aeo_sha256": "627dbcaad178ecc0ed3c3d8bee90748a595737e6948a394aa7fd31eb1d593f14",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Renamed: methods/matt/grilling/METHOD.md -> methods/discovery/requirements-interview.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/domain-modeling.md",
+      "role": "main",
+      "method_id": "domain-modeling",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/domain-modeling/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "b62d997256cc073e123d4303da8e9db00db0e28de9739660ca3e55ab76e09cdb",
+      "aeo_sha256": "0355ac894f95c5f7123a03a4a315ba714465c71d6da9ec5fb7f0fc925bc700b4",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Renamed: methods/matt/domain-modeling/METHOD.md -> methods/architecture/domain-modeling.md",
+        "2 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/domain-modeling/adr-format.md",
+      "role": "supporting",
+      "method_id": "domain-modeling",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/domain-modeling/ADR-FORMAT.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "b7021c31a1c2485b07356a8110fd1fd1ae4facbab3e210983789f425f867d95b",
+      "aeo_sha256": "e504da588e49d335df5506fb3e1aa63d8295d48cbac1c3945cd245e1fc391d40",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/domain-modeling/ADR-FORMAT.md -> methods/architecture/domain-modeling/adr-format.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/domain-modeling/glossary-format.md",
+      "role": "supporting",
+      "method_id": "domain-modeling",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/domain-modeling/GLOSSARY-FORMAT.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "61fa9f6f9231070461dd4f7d4cfad377c33013c1e5668e1e6c0a8e4500944b3b",
+      "aeo_sha256": "91a980c2bb8775269e755c5550fa9184d715b3b758ddfb7e2cda5108cb824448",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/domain-modeling/GLOSSARY-FORMAT.md -> methods/architecture/domain-modeling/glossary-format.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/module-design.md",
+      "role": "main",
+      "method_id": "module-design",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/codebase-design/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "362b0bec828219d9f4b08ca7c466164e67253bdd817359258e60d2e9c5692a8f",
+      "aeo_sha256": "38adbd8c5e67c8733253b189c4f1ddcd146ef14020f31b9c4425b5b7a1bdc29e",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Renamed: methods/matt/codebase-design/METHOD.md -> methods/architecture/module-design.md",
+        "2 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/module-design/deepening.md",
+      "role": "supporting",
+      "method_id": "module-design",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/codebase-design/DEEPENING.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "a67260cb384580b60430486edeb47a6e656ea5f8a42b7196b24461459031f00c",
+      "aeo_sha256": "57770486e10b7f672cfa17d8cd73564f3ee110c4498277fbf76745ac7573bbee",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/codebase-design/DEEPENING.md -> methods/architecture/module-design/deepening.md",
+        "1 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/module-design/design-it-twice.md",
+      "role": "supporting",
+      "method_id": "module-design",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/codebase-design/DESIGN-IT-TWICE.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "43e788220bde5ce60c5f8932b6bde7a758ed63e22ddc0d658dbf6460d8950a6c",
+      "aeo_sha256": "fa949bb40a8ab9a94e1acc793aeb1e9bb19de9174ff47c38b0184becacfc0dcf",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/codebase-design/DESIGN-IT-TWICE.md -> methods/architecture/module-design/design-it-twice.md",
+        "5 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/code-review/code-review.md",
+      "role": "main",
+      "method_id": "code-review",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/code-review/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "36847f010579f3bccd54c49793e1fd043f10cc49b4607bac5a3067522e528b91",
+      "aeo_sha256": "9baee26195a96de5f937ab19690e3041a98218e530db0b861e9c62b39740a31e",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Tracker setup points to `methods/discovery/tracker-setup.md`. The Standards axis always includes `core/principles/minimal-change.md`. Sub-agents run on the Balanced tier (`CLAUDE_CODE_SUBAGENT_MODEL`).",
+        "Renamed: methods/matt/code-review/METHOD.md -> methods/code-review/code-review.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/debugging/systematic-debugging.md",
+      "role": "main",
+      "method_id": "systematic-debugging",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/diagnosing-bugs/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "aa87b0ac245c6d1b203c4678eb34dc101af02291448780c55c5e58ccc1619bd7",
+      "aeo_sha256": "26526f0d6b1d3593868fe8884e5395b4eb8d977c88abd1289113cb25fbc69a3b",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Adds an appendix with the non-overlapping parts of Addy Osmani's `debugging-and-error-recovery` (stop-the-line, layer localisation, non-reproducible triage, untrusted error output). Run as a subagent, the ranked hypotheses go into the response contract instead of waiting for the user.",
+        "Renamed: methods/matt/diagnosing-bugs/METHOD.md -> methods/debugging/systematic-debugging.md",
+        "2 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/debugging/systematic-debugging/hitl-loop.template.sh",
+      "role": "supporting",
+      "method_id": "systematic-debugging",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/diagnosing-bugs/scripts/hitl-loop.template.sh",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "063ef14e7212113c7778258172e7c76e963926963e448934048f505d6e576e8f",
+      "aeo_sha256": "b99281a7146cece5a4472e9f2caabd66d9246087fac50bd4352f0fd1c307302f",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/diagnosing-bugs/scripts/hitl-loop.template.sh -> methods/debugging/systematic-debugging/hitl-loop.template.sh"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/prototyping.md",
+      "role": "main",
+      "method_id": "prototyping",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/prototype/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "f74ae01f4fc454d3a4ef21271920f1706e626271e715dda0559e489f45c792c3",
+      "aeo_sha256": "f61e29b89c4d6dc78d7fdf5e7e2aa223ee00b83df4597479e17aa8e009c78bfb",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Prototype files stay inside the approved file scope. Capturing on a throwaway branch (step 6) is a commit and goes through approval class 3.",
+        "Renamed: methods/matt/prototype/METHOD.md -> methods/architecture/prototyping.md",
+        "2 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/prototyping/logic-prototype.md",
+      "role": "supporting",
+      "method_id": "prototyping",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/prototype/LOGIC.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "8d7e31de7ce73b8e62f207e3f3ecbd90a7a54fdc728f8965f5f0739976f9959a",
+      "aeo_sha256": "0d42ca7e22a9a0ab2c466031aad47d23e94e3597a4080722544f1702d632cf30",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/prototype/LOGIC.md -> methods/architecture/prototyping/logic-prototype.md",
+        "2 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/prototyping/ui-prototype.md",
+      "role": "supporting",
+      "method_id": "prototyping",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/prototype/UI.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "5ea83263ba72174c9055d58045f053d6577c0db6802c1e15bd1468dd16f78a0b",
+      "aeo_sha256": "d14c63b09a10fe35d1b0cd9fff0eef42bd138aab91b316b6e6b4e72757e49681",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/prototype/UI.md -> methods/architecture/prototyping/ui-prototype.md",
+        "2 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/delivery/pull-request-writing.md",
+      "role": "main",
+      "method_id": "pull-request-writing",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/pr/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "57658baca2e50e9cf98fdb6b74a51f2afd34b71019d516f7c5d45a51a28354b0",
+      "aeo_sha256": "79f897adf671945574c14538e2f2d75289b3ad1c3f1920df5e83d23acd3d0e5a",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: AEO writes the body to `.aeo/runs/<run>/pr.md`; it never opens, pushes or merges the PR.",
+        "Renamed: methods/matt/pr/METHOD.md -> methods/delivery/pull-request-writing.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/delivery/pull-request-writing/CREDITS.md",
+      "role": "supporting",
+      "method_id": "pull-request-writing",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/pr/CREDITS.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "f5b7f7ead794f672324eb6a2cdc6986840e452abf15d72938084b645074bd149",
+      "aeo_sha256": "504b4ac914fcb306f6ddb8f39268bb648bd7209dfc390ba926f279a7ac166a9b",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/pr/CREDITS.md -> methods/delivery/pull-request-writing/CREDITS.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/tracker-setup.md",
+      "role": "main",
+      "method_id": "tracker-setup",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/setup-matt-pocock-skills/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "a5dd3406178c0e4cde95e3926ae07c6c6abd121587a674a12dc3b06cb5ed49dc",
+      "aeo_sha256": "70708a64ede91cee5e9fc70f6360e7cfcbfcdb112c85df41caa5a3d3782590da",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Renamed from `setup-matt-pocock-skills`. AEO does not ship `triage`: treat it as not installed, so Section B (triage labels) and every triage-only step are always skipped (upstream already handles that case); the link to the unshipped `triage-labels.md` seed is removed. Remote steps (`git remote add`, `gh`/`glab` label or issue creation) need the user's explicit approval. Autonomous mode supports the local-markdown tracker only.",
+        "Renamed: methods/matt/tracker-setup/METHOD.md -> methods/discovery/tracker-setup.md",
+        "4 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/tracker-setup/domain-docs.md",
+      "role": "supporting",
+      "method_id": "tracker-setup",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/setup-matt-pocock-skills/domain.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "20ee347cfcb4bd2266a8b747c11ca6c3dec85ff4cc38319de88cc3cadc12c80b",
+      "aeo_sha256": "c4c8e18f24de745ea972e2ab21de8d33391a69a7092dfdc86ab1acd2a22ef910",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/tracker-setup/domain.md -> methods/discovery/tracker-setup/domain-docs.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/tracker-setup/issue-tracker-github.md",
+      "role": "supporting",
+      "method_id": "tracker-setup",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-github.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "f5d521ed1b95921613f5d2c10a98e64e91a752060a963964f0d943834e48fbb0",
+      "aeo_sha256": "f71d66985b1480a2cf1d5db7d7e28ecd1f00aa78e49fbb23a7dea89f0ad7437e",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/tracker-setup/issue-tracker-github.md -> methods/discovery/tracker-setup/issue-tracker-github.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/tracker-setup/issue-tracker-gitlab.md",
+      "role": "supporting",
+      "method_id": "tracker-setup",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-gitlab.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "7dbf98d4fa091dd56b00fdb2f453f241f9f077934bf96486a2951b0a2e04c463",
+      "aeo_sha256": "32bdbcf3f66dab849d8297b088029832cbeaeda77e8b4e4052c0671787b6dbdc",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/tracker-setup/issue-tracker-gitlab.md -> methods/discovery/tracker-setup/issue-tracker-gitlab.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/tracker-setup/issue-tracker-local.md",
+      "role": "supporting",
+      "method_id": "tracker-setup",
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "skills/engineering/setup-matt-pocock-skills/issue-tracker-local.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "a604b658f0730eae3107671b09323ed8382bd546e82dc3bedc265bccbeb35021",
+      "aeo_sha256": "530cfc0e1ed7fc183684e2e27e883db1a1f15f9dae996fd1d92cc53651ab3e01",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/matt/tracker-setup/issue-tracker-local.md -> methods/discovery/tracker-setup/issue-tracker-local.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/frontend/ui-engineering.md",
+      "role": "main",
+      "method_id": "ui-engineering",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/frontend-ui-engineering/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "93a0ebffbb6075340d85255ae50724bc5e5e19b0fcbf2ae5d5857b9c5ddf9498",
+      "aeo_sha256": "3492ffcc1ff6d2054dc35b807f98f923a51a9d431872ce19eda16fc6ec1553bd",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Accessibility target WCAG 2.2 AA and test widths 320/375/768/1024/1440, per `core/frontend.md`.",
+        "Renamed: methods/addy/skills/frontend-ui-engineering/METHOD.md -> methods/frontend/ui-engineering.md",
+        "1 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/frontend/browser-verification.md",
+      "role": "main",
+      "method_id": "browser-verification",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/browser-testing-with-devtools/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "e28dd45416e6df93f0db6fffeb3aa2477a0e48a22f8e05fd5bb1892484115bb6",
+      "aeo_sha256": "34dcf260f755886a0af61ffeb5a564d42aed59693c8db9852a1bb6d76b5483a3",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Installing or reconfiguring an MCP server is an install request (approval classes 2/7), never done by the reviewer.",
+        "Renamed: methods/addy/skills/browser-testing-with-devtools/METHOD.md -> methods/frontend/browser-verification.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/security/security-hardening.md",
+      "role": "main",
+      "method_id": "security-hardening",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/security-and-hardening/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "358566859a3d791c474eb9fa36939b45875c7480d7d4650eaa092dceae2c1c37",
+      "aeo_sha256": "98eff50ddd673de0843ccf7a9a5cbbef91965f7296e76d59d28dd0e468c783a0",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Renamed: methods/addy/skills/security-and-hardening/METHOD.md -> methods/security/security-hardening.md",
+        "19 relative reference(s) updated to the new locations",
+        "1 link label updated to show the new relative path"
+      ]
+    },
+    {
+      "aeo_path": "methods/security/security-hardening/hardening-patterns.md",
+      "role": "supporting",
+      "method_id": "security-hardening",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/security-and-hardening/references/hardening-patterns.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "18ff8d176eedaaa8ec1fba4cd7adacc8d81105b1b162b404b37c43b563a313c8",
+      "aeo_sha256": "53102c24399f06655f9e5dbc6171c4486a523aa23753f6953a4ed64e9a5612c0",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/addy/skills/security-and-hardening/references/hardening-patterns.md -> methods/security/security-hardening/hardening-patterns.md",
+        "1 relative reference(s) updated to the new locations",
+        "2 relative references (security checklist, with anchors) updated to the new location"
+      ]
+    },
+    {
+      "aeo_path": "methods/development/performance-optimization.md",
+      "role": "main",
+      "method_id": "performance-optimization",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/performance-optimization/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "82af71540457cf853893685211f64509cd1e781c0de09d0186f16960f2d6eeba",
+      "aeo_sha256": "a8a690717c74d739cd8a3f853e7c12632be0cb52cd30dc18351d43337b9242ec",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Renamed: methods/addy/skills/performance-optimization/METHOD.md -> methods/development/performance-optimization.md",
+        "11 relative reference(s) updated to the new locations",
+        "1 link label updated to show the new relative path"
+      ]
+    },
+    {
+      "aeo_path": "methods/development/performance-optimization/optimization-patterns.md",
+      "role": "supporting",
+      "method_id": "performance-optimization",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/performance-optimization/references/optimization-patterns.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "fbf724076ffb8ac1a28e1a2773c0b550f5361090024b2dd32e5a682c69b7945f",
+      "aeo_sha256": "af93a989a17c4516631ef260c9763bc67f023f7d7d522bd821a944f6d47d12d6",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/addy/skills/performance-optimization/references/optimization-patterns.md -> methods/development/performance-optimization/optimization-patterns.md",
+        "1 relative reference(s) updated to the new locations",
+        "1 relative reference (performance checklist, with anchor) updated to the new location"
+      ]
+    },
+    {
+      "aeo_path": "methods/delivery/release-readiness.md",
+      "role": "main",
+      "method_id": "release-readiness",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/shipping-and-launch/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "92fec446ec4e947a7b8aac88b851aa5743ff8cb39d5987fb53df08ba8a160d64",
+      "aeo_sha256": "b5e081953c5789e0f6cf8c4f37843a87e3f4c33f4be32329ff0e2633363950fa",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: WCAG 2.2 AA. Rollback, push and deploy commands are printed for the user (approval classes 4 and 6); AEO never runs them. `observability-and-instrumentation` is not shipped.",
+        "Renamed: methods/addy/skills/shipping-and-launch/METHOD.md -> methods/delivery/release-readiness.md",
+        "4 relative reference(s) updated to the new locations"
+      ]
+    },
+    {
+      "aeo_path": "methods/delivery/documentation.md",
+      "role": "main",
+      "method_id": "documentation",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/documentation-and-adrs/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "6fccf3088d5042a3c889faa25113ffa47b9f7f999f4fc9e527d5e5226888442f",
+      "aeo_sha256": "1049ebbd8c3d918868660f74a8ae5e4d37fafa82b39b62665afa9269cda4331d",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: ADRs use `methods/architecture/domain-modeling/adr-format.md` (one ADR format). \"Match the existing convention first\" still applies.",
+        "Renamed: methods/addy/skills/documentation-and-adrs/METHOD.md -> methods/delivery/documentation.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/development/code-simplification.md",
+      "role": "main",
+      "method_id": "code-simplification",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/code-simplification/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "e13b433345e6bf425c3625442ac1b3507b371c18d7ea3e3db822da7a7f742a29",
+      "aeo_sha256": "030999a30495eafcacdd965fc28ab61944862fe32a3cc6829fbf9f26c8f54d7e",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Commits go through approval class 3.",
+        "Renamed: methods/addy/skills/code-simplification/METHOD.md -> methods/development/code-simplification.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/adversarial-decision-review.md",
+      "role": "main",
+      "method_id": "adversarial-decision-review",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/doubt-driven-development/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "7a7d53d9d2b93ca7af8d882718753dc7887716f143e7937ecbc381f26416bda7",
+      "aeo_sha256": "e919488203f6d7dec0238262474f34baa9f9cd55fe1c3139134c72764d068d72",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: The fresh-context reviewer is spawned by the orchestrator with an explicit model per `runtime/claude-code/routing.md`; personas never spawn it.",
+        "Renamed: methods/addy/skills/doubt-driven-development/METHOD.md -> methods/architecture/adversarial-decision-review.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/deprecation-and-migration.md",
+      "role": "main",
+      "method_id": "deprecation-and-migration",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/deprecation-and-migration/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "1896d7db836fc067e2856739664db9ff5bb642526fdff2126d08ec0d588da4b7",
+      "aeo_sha256": "57b2903f7d4c89621fd4e4d0c73dace0eba2b7583ed6d6923e1e1c3e3af89435",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Renamed: methods/addy/skills/deprecation-and-migration/METHOD.md -> methods/architecture/deprecation-and-migration.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/development/ci-cd-automation.md",
+      "role": "main",
+      "method_id": "ci-cd-automation",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/ci-cd-and-automation/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "5e0e55c059670a7838dc9d58dc20a3a645c0d43c974416490112af7de522df95",
+      "aeo_sha256": "29080f5730dcf70c5c8a399b511b90571b96ae02d27afa47b81601f82a7ee084",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Agent auto-fix loops that commit on their own are not used; commits go through approval class 3. Deploy steps are the user's (class 6).",
+        "Renamed: methods/addy/skills/ci-cd-and-automation/METHOD.md -> methods/development/ci-cd-automation.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/architecture/public-interface-design.md",
+      "role": "main",
+      "method_id": "public-interface-design",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/api-and-interface-design/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "cc5e2166c484b2c297e8253f56e7525e5031f81d66101ca4e760ef378ea6bad0",
+      "aeo_sha256": "d0976b37dd49c8f101189839582def2b08815a527ed412916d0b543cffd7af5e",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Module-internal interface design belongs to `methods/architecture/module-design.md`.",
+        "Renamed: methods/addy/skills/api-and-interface-design/METHOD.md -> methods/architecture/public-interface-design.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/source-verified-research.md",
+      "role": "main",
+      "method_id": "source-verified-research",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/source-driven-development/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "df38a852658679a67c7a9e4840160570c95094a13a63307e834045ddbf8aa287",
+      "aeo_sha256": "4a9c076b6ae59953e20ef80afc40264a392c6dd67076bdc86fd5fc11524ce1a3",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Renamed: methods/addy/skills/source-driven-development/METHOD.md -> methods/discovery/source-verified-research.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/discovery/intent-interview.md",
+      "role": "main",
+      "method_id": "intent-interview",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "skills/interview-me/SKILL.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "ace4b675999bb504593d572e0f73f3d7e803ad6fddf318445598c82c11939db2",
+      "aeo_sha256": "1bb3b701e17e3f01cc43462cc04ae6b040d26032193992cd0b5cd05e90846086",
+      "modified_from_upstream": true,
+      "modifications": [
+        "YAML frontmatter replaced by the AEO provenance header",
+        "Adaptations: Downstream hand-offs map to AEO: spec → `methods/specification/specification-writing.md`, plan → `methods/planning/ticket-breakdown.md`; `idea-refine` is not shipped (grilling covers it).",
+        "Renamed: methods/addy/skills/interview-me/METHOD.md -> methods/discovery/intent-interview.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/checklists/accessibility.md",
+      "role": "checklist",
+      "method_id": null,
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "references/accessibility-checklist.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "bf6448af1a98833dcd5974ca4a823aef3c5d99873446fdfe9e64020d3fb8cd2f",
+      "aeo_sha256": "4b50642eeee609ded8f17c09c6a90db8ea17cc39d8674a3fbf0b289b7cbe7a32",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Line 4: \"WCAG 2.1 AA\" changed to \"WCAG 2.2 AA (AEO target; see core/frontend.md for the canonical rules)\"",
+        "Renamed: methods/addy/references/accessibility-checklist.md -> methods/checklists/accessibility.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/checklists/definition-of-done.md",
+      "role": "checklist",
+      "method_id": null,
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "references/definition-of-done.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "d1c75d2ae65d2c7a9cd01f93fa8de63e00e75f2fe5d08be224d576157054dcee",
+      "aeo_sha256": "02738f81ba173fcbe14efd46b42842a19c8f6d71f048ea56536bc70927019124",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/addy/references/definition-of-done.md -> methods/checklists/definition-of-done.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/checklists/performance.md",
+      "role": "checklist",
+      "method_id": null,
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "references/performance-checklist.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "ce946457d4a502846e781a2747cf6af50bcc79b1957a66dc024f50557e8982e1",
+      "aeo_sha256": "516b490702f8d16f639d355e6510c079b7c776beeb2e4f6f1c2b24eb248629ac",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/addy/references/performance-checklist.md -> methods/checklists/performance.md"
+      ]
+    },
+    {
+      "aeo_path": "methods/checklists/security.md",
+      "role": "checklist",
+      "method_id": null,
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "references/security-checklist.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "84ed77cbba419c95390618f857eca2fadfeec12f2e5d39af4cc1833b94d82a39",
+      "aeo_sha256": "c2fd16548a4246448e00948bd2a8638ae17a823fdc6f6f1a4c06af9be0415b17",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO provenance comment line added at the top",
+        "Renamed: methods/addy/references/security-checklist.md -> methods/checklists/security.md"
+      ]
+    },
+    {
+      "aeo_path": "agents/code-reviewer.md",
+      "role": "agent",
+      "method_id": "aeo:code-reviewer",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "agents/code-reviewer.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "4efbd53e08e57291cc2869865be809897fbe598767600118ec687d00a557fff4",
+      "aeo_sha256": "280ac13b847cba7a73c2b21b14e900afeaed2f956645640755704b256af84f2b",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO frontmatter (name, description, model, read-only tools, maxTurns), AEO Composition section, references to AEO method paths"
+      ]
+    },
+    {
+      "aeo_path": "agents/security-auditor.md",
+      "role": "agent",
+      "method_id": "aeo:security-auditor",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "agents/security-auditor.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "66a3f68f1c691b600ddb44e88afb138e239d0572df37be84e1f9a427c887dd0a",
+      "aeo_sha256": "c382ff60d8cdfc34a146ebde3a3dbe015f5b4d24bbe5a1e4b29bbdcb42af2ffc",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO frontmatter (name, description, model, read-only tools, maxTurns), AEO Composition section, references to AEO method paths"
+      ]
+    },
+    {
+      "aeo_path": "agents/test-engineer.md",
+      "role": "agent",
+      "method_id": "aeo:test-engineer",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "agents/test-engineer.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "a7a0b33ec3294da8fb4ee02ed28c665056bafa48982930fe551dcfadda9117af",
+      "aeo_sha256": "6fed9b48632e6044810f3b1cfb91a6346327f498b57a4cb52671d57ea2428d23",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO frontmatter (name, description, model, read-only tools, maxTurns), AEO Composition section, references to AEO method paths"
+      ]
+    },
+    {
+      "aeo_path": "agents/web-performance-auditor.md",
+      "role": "agent",
+      "method_id": "aeo:web-performance-auditor",
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "agents/web-performance-auditor.md",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "0928b1cf8103262a364bce0c1fc689a918852e2275441f1b2e687adfa1e607e9",
+      "aeo_sha256": "619d212ff306b7b8dea04b9cfb52bbf237df7b221cd01aec4db4cf85da699f02",
+      "modified_from_upstream": true,
+      "modifications": [
+        "AEO frontmatter (name, description, model, read-only tools, maxTurns), AEO Composition section, references to AEO method paths"
+      ]
+    },
+    {
+      "aeo_path": "methods/licenses/mattpocock-skills.LICENSE",
+      "role": "license",
+      "method_id": null,
+      "source": "matt",
+      "repository": "https://github.com/mattpocock/skills",
+      "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "upstream_path": "LICENSE",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE",
+      "upstream_sha256": "4981c5f6a90eb3a969dacabb9350f5a75695ff3910b39b6534952908dfdc5ff7",
+      "aeo_sha256": "4981c5f6a90eb3a969dacabb9350f5a75695ff3910b39b6534952908dfdc5ff7",
+      "modified_from_upstream": false,
+      "modifications": [
+        "Renamed only (byte-identical)",
+        "Renamed: methods/matt/LICENSE -> methods/licenses/mattpocock-skills.LICENSE"
+      ]
+    },
+    {
+      "aeo_path": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "role": "license",
+      "method_id": null,
+      "source": "addy",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "commit": "301b02b12bff98e4688e6984af6556802322bbde",
+      "upstream_path": "LICENSE",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE",
+      "upstream_sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "aeo_sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7",
+      "modified_from_upstream": false,
+      "modifications": [
+        "Renamed only (byte-identical)",
+        "Renamed: methods/addy/LICENSE -> methods/licenses/addyosmani-agent-skills.LICENSE"
+      ]
+    }
+  ]
+}

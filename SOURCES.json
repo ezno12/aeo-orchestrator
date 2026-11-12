@@ -1,0 +1,69 @@
+{
+  "policy": "Upstream sources are pinned to the exact commit that was inspected. Sources A and B are vendored: a curated subset is copied into methods/ and agents/ with provenance headers and the SHA-256 of every upstream file (methods/MANIFEST.json). Source D is installed as a plugin from its pinned commit. A pin or vendored file changes only in one reviewed commit (SOURCES.json, methods/MANIFEST.json and, for D, .claude-plugin/marketplace.json), followed by the full validation suite (evals/). Nothing updates silently.",
+  "reviewed": "2026-11-11",
+  "sources": [
+    {
+      "id": "A",
+      "name": "mattpocock-skills",
+      "repository": "https://github.com/mattpocock/skills",
+      "sha": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+      "version": "1.3.2 (+3 unreleased commits)",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 Matt Pocock",
+      "credits": "skills/engineering/pr credits Dex Horthy (show-me)",
+      "status": "vendored (curated subset), plugin not installed",
+      "used": "11 AEO methods (listed with their upstream names in methods/MANIFEST.json, source \"matt\"): tdd (authoritative testing workflow), to-spec, to-tickets, grilling, domain-modeling, codebase-design, code-review, diagnosing-bugs, prototype, pr, tracker-setup (from setup-matt-pocock-skills). implement and implement-spec are merged into procedures P3/P4; research into aeo:researcher.",
+      "not_used": "Every other skill; the reason for each is in methods/README.md (audit).",
+      "license_file": "methods/licenses/mattpocock-skills.LICENSE"
+    },
+    {
+      "id": "B",
+      "name": "agent-skills",
+      "repository": "https://github.com/addyosmani/agent-skills",
+      "sha": "301b02b12bff98e4688e6984af6556802322bbde",
+      "version": "0.6.15 (+2)",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2025 Addy Osmani",
+      "status": "vendored (curated subset), plugin not installed",
+      "used": "13 AEO methods (methods/MANIFEST.json, source \"addy\") (frontend-ui-engineering, browser-testing-with-devtools, security-and-hardening, performance-optimization, shipping-and-launch, documentation-and-adrs, code-simplification, doubt-driven-development, deprecation-and-migration, ci-cd-and-automation, api-and-interface-design, source-driven-development, interview-me), 4 checklists (methods/checklists/), and the 4 personas as AEO agents (code-reviewer, security-auditor, test-engineer, web-performance-auditor). debugging-and-error-recovery and incremental-implementation are merged (diagnosing-bugs appendix, P2/P3).",
+      "not_used": "Duplicate TDD/spec/planning/review skills, the using-agent-skills router, commands, hooks and the rest; the reason for each is in methods/README.md (audit).",
+      "license_file": "methods/licenses/addyosmani-agent-skills.LICENSE"
+    },
+    {
+      "id": "C",
+      "name": "ponytail",
+      "repository": "https://github.com/DietrichGebert/ponytail",
+      "sha": "96608e078b2d5ea607c5c3b8b5a54d1c1fba6846",
+      "version": "5.3.3 (+1)",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2026 DietrichGebert",
+      "status": "ideas-adopted, plugin-not-used",
+      "used": "Principles rewritten in core/principles/minimal-change.md (smallest complete change ladder, never-cut list, shortcut: comment convention, debt ledger idea).",
+      "not_used": "Hooks, levels, reply-ending rule, test rule, band/ledger, statusline, skills. AEO projects disable ponytail@ponytail at project scope (validated by G0, tests 45/46)."
+    },
+    {
+      "id": "D",
+      "name": "ui-ux-pro-max",
+      "repository": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "sha": "6ae86f61f520d6ca229d2f40e070410638c908c5",
+      "version": "2.15.0 (+82; tag v2.15.0 = a38d04c)",
+      "license": "MIT",
+      "copyright": "Copyright (c) 2024 Next Level Builder",
+      "notes": "Bundled fonts are SIL OFL 1.1. skills ui-styling/LICENSE.txt is an unfilled Apache-2.0 template while its frontmatter says MIT (open question U16).",
+      "status": "installed",
+      "install": "claude plugin install ui-ux-pro-max@aeo-sources --scope project",
+      "used": "ui-ux-pro-max (design data), ui-styling (shadcn/Tailwind projects only).",
+      "overrides": "design: model invocation denied by the project rule Skill(ui-ux-pro-max:design) (router, needs API keys; the user can still run /ui-ux-pro-max:design); design-system, brand, banner-design, slides user-invocable-only.",
+      "not_used": "stack/ kit, uipro CLI, gallery/."
+    },
+    {
+      "id": "E",
+      "name": "frontend-design",
+      "repository": "claude-plugins-official marketplace",
+      "version": "1.1.1",
+      "license": "see the plugin's LICENSE.txt",
+      "status": "already installed by the user at user scope; not installed or modified by AEO",
+      "used": "Aesthetic direction during /aeo:design for UI work."
+    }
+  ]
+}

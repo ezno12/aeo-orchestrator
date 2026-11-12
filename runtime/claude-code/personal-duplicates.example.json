@@ -1,0 +1,12 @@
+{
+  "_comment": "Optional. Merge into a project's .claude/settings.json only on machines that also have personal (non-plugin) copies of UI UX Pro Max skills in ~/.claude/skills. skillOverrides apply to non-plugin skills only (validated on Claude Code 2.1.322, test 34). Bare names also hide any project skill with the same name, so do not put these in the generic template.",
+  "skillOverrides": {
+    "ui-ux-pro-max": "off",
+    "design": "off",
+    "design-system": "off",
+    "brand": "off",
+    "banner-design": "off",
+    "slides": "off",
+    "ui-styling": "off"
+  }
+}

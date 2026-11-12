@@ -1,0 +1,235 @@
+{
+  "note": "Rename of AEO methods from upstream-author folders to AEO categories (approved 2026-11-11). Old paths are relative to methods/. evals/RESULTS.md rounds 1-3 keep the old paths as a historical record.",
+  "files": [
+    {
+      "old": "addy/skills/interview-me/METHOD.md",
+      "new": "discovery/intent-interview.md",
+      "method_id": "intent-interview"
+    },
+    {
+      "old": "matt/grilling/METHOD.md",
+      "new": "discovery/requirements-interview.md",
+      "method_id": "requirements-interview"
+    },
+    {
+      "old": "addy/skills/source-driven-development/METHOD.md",
+      "new": "discovery/source-verified-research.md",
+      "method_id": "source-verified-research"
+    },
+    {
+      "old": "matt/tracker-setup/METHOD.md",
+      "new": "discovery/tracker-setup.md",
+      "method_id": "tracker-setup"
+    },
+    {
+      "old": "matt/tracker-setup/issue-tracker-github.md",
+      "new": "discovery/tracker-setup/issue-tracker-github.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/tracker-setup/issue-tracker-gitlab.md",
+      "new": "discovery/tracker-setup/issue-tracker-gitlab.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/tracker-setup/issue-tracker-local.md",
+      "new": "discovery/tracker-setup/issue-tracker-local.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/tracker-setup/domain.md",
+      "new": "discovery/tracker-setup/domain-docs.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/to-spec/METHOD.md",
+      "new": "specification/specification-writing.md",
+      "method_id": "specification-writing"
+    },
+    {
+      "old": "matt/to-tickets/METHOD.md",
+      "new": "planning/ticket-breakdown.md",
+      "method_id": "ticket-breakdown"
+    },
+    {
+      "old": "matt/codebase-design/METHOD.md",
+      "new": "architecture/module-design.md",
+      "method_id": "module-design"
+    },
+    {
+      "old": "matt/codebase-design/DEEPENING.md",
+      "new": "architecture/module-design/deepening.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/codebase-design/DESIGN-IT-TWICE.md",
+      "new": "architecture/module-design/design-it-twice.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/skills/api-and-interface-design/METHOD.md",
+      "new": "architecture/public-interface-design.md",
+      "method_id": "public-interface-design"
+    },
+    {
+      "old": "matt/domain-modeling/METHOD.md",
+      "new": "architecture/domain-modeling.md",
+      "method_id": "domain-modeling"
+    },
+    {
+      "old": "matt/domain-modeling/ADR-FORMAT.md",
+      "new": "architecture/domain-modeling/adr-format.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/domain-modeling/GLOSSARY-FORMAT.md",
+      "new": "architecture/domain-modeling/glossary-format.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/skills/doubt-driven-development/METHOD.md",
+      "new": "architecture/adversarial-decision-review.md",
+      "method_id": "adversarial-decision-review"
+    },
+    {
+      "old": "addy/skills/deprecation-and-migration/METHOD.md",
+      "new": "architecture/deprecation-and-migration.md",
+      "method_id": "deprecation-and-migration"
+    },
+    {
+      "old": "matt/prototype/METHOD.md",
+      "new": "architecture/prototyping.md",
+      "method_id": "prototyping"
+    },
+    {
+      "old": "matt/prototype/LOGIC.md",
+      "new": "architecture/prototyping/logic-prototype.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/prototype/UI.md",
+      "new": "architecture/prototyping/ui-prototype.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/tdd/METHOD.md",
+      "new": "testing/test-driven-development.md",
+      "method_id": "test-driven-development"
+    },
+    {
+      "old": "matt/tdd/tests.md",
+      "new": "testing/test-driven-development/good-tests.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/tdd/mocking.md",
+      "new": "testing/test-driven-development/mocking.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/diagnosing-bugs/METHOD.md",
+      "new": "debugging/systematic-debugging.md",
+      "method_id": "systematic-debugging"
+    },
+    {
+      "old": "matt/diagnosing-bugs/scripts/hitl-loop.template.sh",
+      "new": "debugging/systematic-debugging/hitl-loop.template.sh",
+      "method_id": null
+    },
+    {
+      "old": "matt/code-review/METHOD.md",
+      "new": "code-review/code-review.md",
+      "method_id": "code-review"
+    },
+    {
+      "old": "addy/skills/code-simplification/METHOD.md",
+      "new": "development/code-simplification.md",
+      "method_id": "code-simplification"
+    },
+    {
+      "old": "addy/skills/performance-optimization/METHOD.md",
+      "new": "development/performance-optimization.md",
+      "method_id": "performance-optimization"
+    },
+    {
+      "old": "addy/skills/performance-optimization/references/optimization-patterns.md",
+      "new": "development/performance-optimization/optimization-patterns.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/skills/ci-cd-and-automation/METHOD.md",
+      "new": "development/ci-cd-automation.md",
+      "method_id": "ci-cd-automation"
+    },
+    {
+      "old": "addy/skills/frontend-ui-engineering/METHOD.md",
+      "new": "frontend/ui-engineering.md",
+      "method_id": "ui-engineering"
+    },
+    {
+      "old": "addy/skills/browser-testing-with-devtools/METHOD.md",
+      "new": "frontend/browser-verification.md",
+      "method_id": "browser-verification"
+    },
+    {
+      "old": "addy/skills/security-and-hardening/METHOD.md",
+      "new": "security/security-hardening.md",
+      "method_id": "security-hardening"
+    },
+    {
+      "old": "addy/skills/security-and-hardening/references/hardening-patterns.md",
+      "new": "security/security-hardening/hardening-patterns.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/skills/documentation-and-adrs/METHOD.md",
+      "new": "delivery/documentation.md",
+      "method_id": "documentation"
+    },
+    {
+      "old": "matt/pr/METHOD.md",
+      "new": "delivery/pull-request-writing.md",
+      "method_id": "pull-request-writing"
+    },
+    {
+      "old": "matt/pr/CREDITS.md",
+      "new": "delivery/pull-request-writing/CREDITS.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/skills/shipping-and-launch/METHOD.md",
+      "new": "delivery/release-readiness.md",
+      "method_id": "release-readiness"
+    },
+    {
+      "old": "addy/references/accessibility-checklist.md",
+      "new": "checklists/accessibility.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/references/definition-of-done.md",
+      "new": "checklists/definition-of-done.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/references/performance-checklist.md",
+      "new": "checklists/performance.md",
+      "method_id": null
+    },
+    {
+      "old": "addy/references/security-checklist.md",
+      "new": "checklists/security.md",
+      "method_id": null
+    },
+    {
+      "old": "matt/LICENSE",
+      "new": "licenses/mattpocock-skills.LICENSE",
+      "method_id": null
+    },
+    {
+      "old": "addy/LICENSE",
+      "new": "licenses/addyosmani-agent-skills.LICENSE",
+      "method_id": null
+    }
+  ]
+}

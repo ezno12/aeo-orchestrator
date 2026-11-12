@@ -1,0 +1,30 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "aeo-sources",
+  "description": "AEO and the one external plugin it uses (UI UX Pro Max), pinned to an inspected commit; change a sha only in a reviewed commit followed by re-validation (see SOURCES.json). Matt Pocock and Addy Osmani methods ship inside AEO (methods/).",
+  "owner": {
+    "name": "bassem.benyahia"
+  },
+  "plugins": [
+    {
+      "name": "aeo",
+      "description": "AI Engineering Orchestrator (this repository).",
+      "source": "./",
+      "category": "development"
+    },
+    {
+      "name": "ui-ux-pro-max",
+      "description": "UI UX Pro Max design intelligence, pinned at 6ae86f6 (v2.15.0+82). MIT.",
+      "author": {
+        "name": "nextlevelbuilder"
+      },
+      "source": {
+        "source": "url",
+        "url": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill.git",
+        "sha": "6ae86f61f520d6ca229d2f40e070410638c908c5"
+      },
+      "homepage": "https://github.com/nextlevelbuilder/ui-ux-pro-max-skill",
+      "category": "design"
+    }
+  ]
+}
