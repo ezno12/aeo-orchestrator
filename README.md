@@ -24,11 +24,12 @@ It writes code test-first, has every change reviewed and validated by separate a
 7. [The gates](#the-gates)
 8. [Examples by kind of work](#examples-by-kind-of-work)
 9. [What AEO writes in your project](#what-aeo-writes-in-your-project)
-10. [Models and cost](#models-and-cost)
-11. [Checking the gate ledger yourself](#checking-the-gate-ledger-yourself)
-12. [Troubleshooting](#troubleshooting)
-13. [Repository layout](#repository-layout)
-14. [Sources and licence](#sources-and-licence)
+10. [What AEO runs, reads and sends](#what-aeo-runs-reads-and-sends)
+11. [Models and cost](#models-and-cost)
+12. [Checking the gate ledger yourself](#checking-the-gate-ledger-yourself)
+13. [Troubleshooting](#troubleshooting)
+14. [Repository layout](#repository-layout)
+15. [Sources and licence](#sources-and-licence)
 
 ## Requirements
 
@@ -185,6 +186,19 @@ Small releases (2 files or fewer, under 50 changed lines, no auth, payments, dat
 | `.aeo/runs/<run>/` | Per run: audit log, evidence (test output, screenshots), PR text, cost report | No (ignored) |
 | `.scratch/<feature>/` | Spec and tickets (local tracker) | Your choice |
 | `CLAUDE.md` or `AGENTS.md`, `docs/agents/` | Tracker and domain-docs setup, written once with your approval | Yes |
+
+## What AEO runs, reads and sends
+
+- **Hooks** (`hooks/hooks.json`) run `node` on two scripts, and do nothing in a project without an `.aeo/` folder:
+  - `hooks/ledger.js` runs on every prompt you send and after every AEO agent finishes. It appends a record to `.aeo/gates.jsonl`.
+  - `hooks/audit.js` runs before and after every Bash command (also when one fails or is denied) and when an agent starts or stops. It appends to `.aeo/runs/<run>/audit.jsonl`. When an agent stops, it reads that agent's Claude Code log to record which model actually ran.
+
+  The hooks never block, change or answer a tool call; they only add a one-line note with the record number.
+- **Scripts** that the commands run: `runtime/claude-code/scripts/verify-gates.js` (checks the gate ledger) and `cost-report.js` (models and cost). Both **read** Claude Code's own session logs for this project under `~/.claude/projects/` and write only inside `.aeo/`.
+- **Network:** AEO's own code makes no network requests and sends nothing anywhere. During research and design, Claude itself may search the web or read documentation pages, as in any Claude Code session.
+- **Settings and permissions:** installing the plugin changes no settings. The project settings template (model, deny rules, plugins switched off) takes effect only if you merge it into `.claude/settings.json` yourself.
+- **Installs:** if a step needs a missing tool (for example a browser MCP server for UI review), AEO stops and asks; nothing is installed without your approval.
+- **Git:** commits and branches in your repository only, each asked first by the template's rules; never push, merge into the default branch or deploy.
 
 ## Models and cost
 

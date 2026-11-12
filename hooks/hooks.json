@@ -7,7 +7,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'audit.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/audit.js\"",
             "timeout": 10
           }
         ]
@@ -17,7 +17,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'ledger.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/ledger.js\"",
             "timeout": 10
           }
         ]
@@ -28,7 +28,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'audit.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/audit.js\"",
             "timeout": 10
           }
         ]
@@ -39,7 +39,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'audit.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/audit.js\"",
             "timeout": 10
           }
         ]
@@ -51,7 +51,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'audit.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/audit.js\"",
             "timeout": 10
           }
         ]
@@ -63,7 +63,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'audit.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/audit.js\"",
             "timeout": 10
           }
         ]
@@ -75,7 +75,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'audit.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/audit.js\"",
             "timeout": 10
           }
         ]
@@ -86,7 +86,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node -e \"require(require('path').join(process.env.CLAUDE_PLUGIN_ROOT, 'hooks', 'ledger.js'))\"",
+            "command": "node \"${CLAUDE_PLUGIN_ROOT}/hooks/ledger.js\"",
             "timeout": 10
           }
         ]

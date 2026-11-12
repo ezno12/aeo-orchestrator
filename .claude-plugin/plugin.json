@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "description": "AI Engineering Orchestrator: one guided workflow (discover, design, develop, quality, deliver) with its own curated methods adapted from Matt Pocock and Addy Osmani (MIT), UI UX Pro Max design data, approval gates, TDD, validation, audit log and cost-optimized model routing.",
   "author": {
-    "name": "bassem.benyahia"
+    "name": "Bassem Ben Yahia"
   },
+  "homepage": "https://github.com/ezno12/aeo-orchestrator",
+  "repository": "https://github.com/ezno12/aeo-orchestrator",
   "license": "MIT",
   "keywords": [
     "orchestrator",
@@ -25,6 +27,5 @@
     "./agents/security-auditor.md",
     "./agents/test-engineer.md",
     "./agents/web-performance-auditor.md"
-  ],
-  "hooks": "./hooks/hooks.json"
+  ]
 }
