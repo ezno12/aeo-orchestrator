@@ -156,7 +156,7 @@ Always refused, whatever you approve: `git reset --hard`, `git clean -f`, `git b
 | 7 | quality | Every required reviewer reported, and the validator passed |
 | 8 | quality | No open critical or high security finding, and the security auditor really ran on Opus |
 | 9 | deliver | The final validation (all 15 checks) passes, including the refreshed debt ledger |
-| 10 | deliver | You approve go |
+| 10 | deliver | You approve go. The approval covers the exact code you approved: if the code changes afterwards (an edit, a new commit, a rebase), gate 10 is stale and AEO stops, shows what changed, and asks again |
 
 A gate counts only if the gate ledger supports it; each command checks this when it starts and redoes any gate that no longer holds (for example, when an agent changed code after its validation).
 
@@ -190,7 +190,7 @@ Small releases (2 files or fewer, under 50 changed lines, no auth, payments, dat
 ## What AEO runs, reads and sends
 
 - **Hooks** (`hooks/hooks.json`) run `node` on two scripts, and do nothing in a project without an `.aeo/` folder:
-  - `hooks/ledger.js` runs on every prompt you send and after every AEO agent finishes. It appends a record to `.aeo/gates.jsonl`.
+  - `hooks/ledger.js` runs on every prompt you send and after every AEO agent finishes. It appends a record to `.aeo/gates.jsonl`, including a hash of the current code, which it gets by running `git` in a throwaway index (your staging area and files are untouched; it only adds git objects).
   - `hooks/audit.js` runs before and after every Bash command (also when one fails or is denied) and when an agent starts or stops. It appends to `.aeo/runs/<run>/audit.jsonl`. When an agent stops, it reads that agent's Claude Code log to record which model actually ran.
 
   The hooks never block, change or answer a tool call; they only add a one-line note with the record number.

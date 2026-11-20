@@ -2,7 +2,8 @@
 // Usage: node verify-gates.js --project <dir> [--transcripts <~/.claude/projects>] [--report <seq>]
 // Prints one line per check: LEDGER <name>: PASS | FAIL | INCONCLUSIVE · <evidence>. Exit 1 on any FAIL.
 // --report <seq> prints that agent's full recorded report after checking it against the ledger (validator check 5).
-// Read-only. Used by aeo:workflow-validator (core/validation.md check 15).
+// Read-only, except that hashing the current code adds git objects (never touches files or the staging area).
+// Used by aeo:workflow-validator (core/validation.md check 15).
 //
 // It reads Claude Code's own session logs (~/.claude/projects/<project>/<session>.jsonl and
 // <session>/subagents/agent-<id>.jsonl). Their format is not a documented interface; see
@@ -10,6 +11,7 @@
 // as expected, the affected check is INCONCLUSIVE or FAIL, never PASS.
 'use strict';
 const fs = require('fs'), path = require('path'), os = require('os'), crypto = require('crypto');
+const { execFileSync } = require('child_process');
 const arg = (n, d) => { const i = process.argv.indexOf(n); return i > 0 ? process.argv[i + 1] : d; };
 const project = path.resolve(arg('--project', '.'));
 const tdir = arg('--transcripts', path.join(os.homedir(), '.claude', 'projects'));
@@ -94,6 +96,8 @@ function anchor(r) {
     const head = squash(String(r.response_head).replace(/^\s*<tools-used-before-summary>[\s\S]*?<\/tools-used-before-summary>/, '')).slice(0, 150);
     return squash(textOf(res.content)).includes(head) ? ['PASS', 'agent call and result found in transcript'] : ['FAIL', 'transcript result differs from ledger record'];
   }
+  // Written by the hook itself, not by a message or an agent; its session-log note (section 3) witnesses it.
+  if (r.kind === 'approval_stale') return bySeq.has(r.approval_seq) ? ['PASS', 'stale marker for a recorded approval'] : ['FAIL', `stale marker for #${r.approval_seq}, which is not in the ledger`];
   return ['FAIL', `unknown record kind ${r.kind}`];
 }
 const anchored = new Map();
@@ -114,8 +118,9 @@ const witnesses = []; const incomplete = [];
     for (const o of readJsonl(path.join(d, f)).L) {
       const a = o.type === 'attachment' && o.attachment;
       if (!a || a.type !== 'hook_additional_context') continue;
-      for (const s of [].concat(a.content || [])) {
-        if (typeof s !== 'string' || !s.startsWith('AEO gate ledger:')) continue;
+      // One hook call can add several notes (a record and a stale-approval record), one per line.
+      for (const s of [].concat(a.content || []).flatMap((x) => typeof x === 'string' ? x.split('\n') : [])) {
+        if (!s.startsWith('AEO gate ledger:')) continue;
         const m = s.match(/#(\d+)/), h = s.match(/\[h:([^\]]*)\]/);
         if (!m) { incomplete.push(`${f}: "${s.slice(0, 80)}"`); continue; }
         witnesses.push({ seq: +m[1], h: h ? h[1] : null, session: o.sessionId, toolUse: a.toolUseID, file: f });
@@ -269,6 +274,42 @@ const ticketReport = (id) => (rs) => {
   if (!w) return ['FAIL', `no implementer or debugger report recorded for ticket ${id} before validation #${v}`];
   const [verdict, ev] = report(w); return [verdict, `report ${ev}`];
 };
+// Gate 10 covers exact code (issue #1). Same as codeState() in hooks/ledger.js: the working copy's git tree
+// without .aeo/, plus HEAD.
+const git = (args, env) => execFileSync('git', args, { cwd: project, env: Object.assign({}, process.env, env), stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+function codeState() {
+  let tmp = null;
+  try {
+    let head = null; try { head = git(['rev-parse', '--verify', '-q', 'HEAD']); } catch (e) { /* no commit yet */ }
+    const idx = path.resolve(project, git(['rev-parse', '--git-path', 'index']));
+    tmp = path.join(os.tmpdir(), `aeo-index-${process.pid}-${Date.now()}`);
+    if (fs.existsSync(idx)) fs.copyFileSync(idx, tmp);
+    const env = { GIT_INDEX_FILE: tmp };
+    git(['rm', '-r', '-q', '--cached', '--ignore-unmatch', '--', '.aeo'], env);
+    git(['add', '-A', '--', '.', ':(exclude).aeo'], env);
+    return { head, tree: git(['write-tree'], env) };
+  } catch (e) { return null; } finally { if (tmp) try { fs.unlinkSync(tmp); } catch (e) { /* gone */ } }
+}
+// What changed between two code states: files, and the commits that came in (after a rebase, every rebased and
+// pulled-in commit), so re-approving is quick.
+function changes(from, to) {
+  const cap = (a) => a.length > 12 ? a.slice(0, 12).concat(`… ${a.length - 12} more`) : a;
+  let files = [], commits = [];
+  try { files = git(['diff', '--name-status', from.tree, to.tree]).split('\n').filter(Boolean).map((l) => l.replace(/\t/g, ' ')); } catch (e) { files = ['(file list unavailable)']; }
+  if (from.head && to.head && from.head !== to.head) try { commits = git(['log', '--oneline', `${from.head}..${to.head}`]).split('\n').filter(Boolean); } catch (e) { commits = [`HEAD ${from.head.slice(0, 7)} → ${to.head.slice(0, 7)}`]; }
+  return `files: ${cap(files).join(', ') || 'none'}${commits.length ? `; commits since: ${cap(commits).join(' | ')}` : ''}`;
+}
+const goBound = (g9) => (rs) => {
+  const a = rs[0];
+  if (!('code' in a)) return ['INCONCLUSIVE', `approval #${a.seq} predates code binding: it records no code hash`];
+  if (!a.code) return ['INCONCLUSIVE', `no code hash recorded with approval #${a.seq} (not a git repository, or git failed)`];
+  const v = seqs(g9).map((n) => bySeq.get(n)).find((r) => r && r.kind === 'agent_result' && r.agent_type === 'aeo:workflow-validator');
+  if (v && v.code && v.code.tree !== a.code.tree) return ['FAIL', `the approved code is not the code Gate 9 validated (#${v.seq}): ${changes(v.code, a.code)}. Re-run Gate 9, then ask for go again`];
+  const now = codeState();
+  if (!now) return ['INCONCLUSIVE', 'cannot hash the current code (git unavailable)'];
+  if (now.tree !== a.code.tree) return ['FAIL', `stale: the code changed since go approval #${a.seq} (tree ${a.code.tree.slice(0, 12)} → ${now.tree.slice(0, 12)}): ${changes(a.code, now)}. Re-run Gate 9, then ask the user to approve go again`];
+  return ['PASS', `code unchanged since the approval (tree ${now.tree.slice(0, 12)})${v && v.code ? `, the code Gate 9 validated (#${v.seq})` : ''}`];
+};
 const ticketFresh = (id) => (rs) => freshness(rs.filter((r) => r.kind === 'agent_result'), recs.filter(ofTicket(id)));
 const releaseFresh = (rs) => freshness(rs.filter((r) => r.kind === 'agent_result'), recs.filter((r) => r.kind === 'agent_result' && WORKERS.test(r.agent_type) && (!state.current_run || r.run === state.current_run)));
 // Gate 5: both per-slice review axes (Standards and Spec), foreground aeo:code-reviewer results,
@@ -300,7 +341,8 @@ let claims = 0;
       if (!KNOWN.has(k)) { say(`${label} gate ${k}`, 'FAIL', 'unknown gate id'); continue; }
       if (passed(g[k])) claims++;
     }
-    for (const k of ['1', '2', '2a', '10']) need(`${label} gate ${k}`, g[k], approval);
+    for (const k of ['1', '2', '2a']) need(`${label} gate ${k}`, g[k], approval);
+    need(`${label} gate 10`, g['10'], all(approval, goBound(g['9'])));
     const fan = !(g['7'] && g['7'].path === 'skip');
     if (fan) need(`${label} gate 7`, g['7'], all(reviewers(['aeo:code-reviewer', 'aeo:security-auditor', 'aeo:test-engineer']), releaseFresh));
     need(`${label} gate 8`, g['8'], all(fan ? reviewers(['aeo:security-auditor']) : validatorPass(null), releaseFresh));
