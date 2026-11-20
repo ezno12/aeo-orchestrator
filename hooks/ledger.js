@@ -3,12 +3,15 @@
 // the project settings deny Edit/Write/Bash on it, and the file is kept read-only between appends.
 // Records are the evidence for gates: the user's own prompts (approvals) and the results of
 // aeo:* agents (validator verdicts, reviewer reports). Each record carries the session and
-// tool_use ids so runtime/claude-code/scripts/verify-gates.js can anchor it in Claude Code's transcripts.
+// tool_use ids so runtime/claude-code/scripts/verify-gates.js can anchor it in Claude Code's transcripts,
+// and the code state (git tree and HEAD), so a go approval covers exact code.
 // Never blocks the session: exits 0; prints only an additionalContext line with the record number.
 'use strict';
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 const crypto = require('crypto');
+const { execFileSync } = require('child_process');
 
 const sha = (s) => crypto.createHash('sha256').update(s).digest('hex');
 // Short record hash in the note. Claude Code stores the note in its session log, outside the project, so the
@@ -26,6 +29,36 @@ function textOf(v) {
     if (v.result !== undefined) return textOf(v.result);
   }
   return '';
+}
+
+// The exact code an approval covers: the git tree of the working copy (committed, staged, unstaged and untracked
+// files, minus .gitignore'd ones and .aeo/, which changes with every record), plus HEAD to list commits that came in.
+// Built in a throwaway index, so the user's staging area is untouched; it only adds git objects.
+// Kept identical to codeState() in runtime/claude-code/scripts/verify-gates.js.
+// shortcut: re-hashes the working copy on every prompt and agent result; cache by mtime if large repos get slow.
+function codeState(dir) {
+  let tmp = null;
+  try {
+    const git = (args, env) => execFileSync('git', args, { cwd: dir, env: Object.assign({}, process.env, env), stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    let head = null; try { head = git(['rev-parse', '--verify', '-q', 'HEAD']); } catch (e) { /* no commit yet */ }
+    const idx = path.resolve(dir, git(['rev-parse', '--git-path', 'index']));
+    tmp = path.join(os.tmpdir(), `aeo-index-${process.pid}-${Date.now()}`);
+    if (fs.existsSync(idx)) fs.copyFileSync(idx, tmp); // copied so git can reuse its file-change cache
+    const env = { GIT_INDEX_FILE: tmp };
+    git(['rm', '-r', '-q', '--cached', '--ignore-unmatch', '--', '.aeo'], env);
+    git(['add', '-A', '--', '.', ':(exclude).aeo'], env);
+    return { head, tree: git(['write-tree'], env) };
+  } catch (e) { return null; } finally { if (tmp) try { fs.unlinkSync(tmp); } catch (e) { /* gone */ } }
+}
+
+// Gate 10 (go) approvals that state.json cites, wherever they sit (same walk as the verifier).
+function goApprovals(o, acc = []) {
+  if (!o || typeof o !== 'object') return acc;
+  if (Array.isArray(o)) { o.forEach((x) => goApprovals(x, acc)); return acc; }
+  const g = o.gates && o.gates['10'];
+  if (g && (g === 'passed' || g.status === 'passed')) [].concat(g.approval_seq ?? []).forEach((n) => acc.push(+n));
+  for (const [k, v] of Object.entries(o)) if (k !== 'gates') goApprovals(v, acc);
+  return acc;
 }
 
 function lock(file) {
@@ -69,11 +102,13 @@ function main() {
   if (!project) return;
   const aeo = path.join(project, '.aeo');
   if (!fs.existsSync(aeo)) return;
-  let run = null;
-  try { run = JSON.parse(fs.readFileSync(path.join(aeo, 'state.json'), 'utf8')).current_run || null; } catch (e) { /* no state */ }
+  let run = null, state = {};
+  try { state = JSON.parse(fs.readFileSync(path.join(aeo, 'state.json'), 'utf8')); run = state.current_run || null; } catch (e) { /* no state */ }
 
   const ev = input.hook_event_name;
-  const base = { ts: new Date().toISOString(), session: input.session_id, run };
+  if (ev !== 'UserPromptSubmit' && !(ev === 'PostToolUse' && (input.tool_name === 'Agent' || input.tool_name === 'Task') && String((input.tool_input || {}).subagent_type || '').startsWith('aeo:'))) return;
+  const code = codeState(project);
+  const base = { ts: new Date().toISOString(), session: input.session_id, run, code };
   let rec, note;
   if (ev === 'UserPromptSubmit') {
     const text = String(input.prompt || '');
@@ -111,7 +146,19 @@ function main() {
     return;
   }
   const r = append(aeo, rec);
-  process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: ev, additionalContext: note(r) } }));
+  const notes = [note(r)];
+  // A go approval covers the exact code it was given for. If the code now differs, record that once (append-only).
+  if (code) {
+    const L = fs.readFileSync(path.join(aeo, 'gates.jsonl'), 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
+    for (const n of new Set(goApprovals(state))) {
+      const a = L.find((x) => x.seq === n);
+      if (!a || !a.code || a.code.tree === code.tree) continue;
+      if (L.some((x) => x.kind === 'approval_stale' && x.approval_seq === n && x.current && x.current.tree === code.tree)) continue;
+      const s = append(aeo, { ts: new Date().toISOString(), session: input.session_id, run, kind: 'approval_stale', gate: '10', approval_seq: n, approved: a.code, current: code });
+      notes.push(`AEO gate ledger: stale-approval record #${s.seq} ${ref(s)}: the code changed since go approval #${n}, so that approval no longer matches. Stop: run verify-gates.js to see what changed, re-run Gate 9, then ask the user to approve go again.`);
+    }
+  }
+  process.stdout.write(JSON.stringify({ hookSpecificOutput: { hookEventName: ev, additionalContext: notes.join('\n') } }));
 }
 
 try { main(); } catch (e) { /* never block the session */ }

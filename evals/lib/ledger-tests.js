@@ -220,6 +220,57 @@ const IDE = '<ide_opened_file>The user opened the file c:\\proj\\.aeo\\state.jso
   expect('U1 untested version is named, not blocking, by default', w.verify(), 'PASS', [/log format: PASS .*9\.9\.9 not yet tested/, new RegExp(`head: PASS · #${last.seq} ${last.hash}`)]);
   expect('U2 untested version blocks in strict mode', w.verify(['--strict-version']), 'INCONCLUSIVE', [/log format: INCONCLUSIVE .*strict mode/]); }
 
+// --- Gate 10 covers exact code (issue #1): the go approval records the code hash; any later change voids it.
+function gitWorld(name) {
+  const w = new World(name);
+  w.git = (...a) => execFileSync('git', ['-c', 'user.name=aeo-test', '-c', 'user.email=test@example.invalid', '-c', 'commit.gpgsign=false', '-c', 'core.autocrlf=false', ...a], { cwd: w.proj, stdio: ['ignore', 'pipe', 'pipe'] }).toString().trim();
+  w.file = (f, s) => { fs.mkdirSync(path.dirname(path.join(w.proj, f)), { recursive: true }); fs.writeFileSync(path.join(w.proj, f), s); };
+  w.git('init', '-q', '-b', 'main');
+  w.file('src/a.js', 'module.exports = 1;\n'); w.git('add', 'src'); w.git('commit', '-q', '-m', 'base');
+  w.git('checkout', '-q', '-b', 'feature');
+  w.file('src/b.js', 'module.exports = 2;\n'); w.git('add', 'src'); w.git('commit', '-q', '-m', 'feature change');
+  return w;
+}
+function go(w) {
+  const v9 = w.agent('aeo:workflow-validator', 'release-validate', 'VERDICT: PASS', 0);
+  const a = w.prompt('I approve Gate 10: go for run1 as presented');
+  w.setState({ current_run: 'run1', gates: { 9: { status: 'passed', ledger_seq: v9.seq }, 10: { status: 'passed', approval_seq: a } } });
+  return { v9, a };
+}
+{ const w = gitWorld('g1'); const { a } = go(w);
+  const rec = w.ledger().find((r) => r.seq === a);
+  expect('G1 go approval records the code hash; unchanged code passes', w.verify(), 'PASS', [/state gate 10: PASS .*code unchanged since the approval .*the code Gate 9 validated/]);
+  if (!(rec.code && /^[0-9a-f]{40}$/.test(rec.code.tree) && /^[0-9a-f]{40}$/.test(rec.code.head))) { results.push(false); console.log('FAIL  G1 approval record has no code hash'); } }
+{ const w = gitWorld('g2'); go(w); w.file('src/a.js', 'module.exports = 3;\n');
+  expect('G2 code changed after go (uncommitted edit) blocks', w.verify(), 'FAIL', [/state gate 10: FAIL .*stale: the code changed since go approval .*files: M src\/a\.js/]); }
+{ const w = gitWorld('g2b'); go(w); w.file('src/c.js', 'new\n');
+  expect('G2b new untracked file after go blocks', w.verify(), 'FAIL', [/state gate 10: FAIL .*stale.*A src\/c\.js/]); }
+{ const w = gitWorld('g2c'); go(w); fs.writeFileSync(path.join(w.proj, '.aeo', 'debt.md'), 'x'); w.git('add', '-f', '.aeo/state.json'); w.git('commit', '-q', '-m', 'record state');
+  expect('G2c committing .aeo/ files after go does not void it', w.verify(), 'PASS', [/state gate 10: PASS/]); }
+{ const w = gitWorld('g3'); const { a } = go(w); w.file('src/a.js', 'module.exports = 3;\n'); w.prompt('what next?'); w.prompt('and now?');
+  const stale = w.ledger().filter((r) => r.kind === 'approval_stale');
+  const ok = stale.length === 1 && stale[0].approval_seq === a && stale[0].gate === '10' && stale[0].approved.tree !== stale[0].current.tree;
+  results.push(ok); console.log(`${ok ? 'PASS' : 'FAIL'}  G3 stale approval appended to the ledger once (${stale.length} record(s))`);
+  expect('G3 stale record is chained, anchored and referenced', w.verify(), 'FAIL', [/chain: PASS/, /anchors: PASS/, /session-log references: PASS/, /state gate 10: FAIL .*stale/]); }
+{ const w = gitWorld('g4'); go(w); w.file('src/a.js', 'module.exports = 3;\n'); w.prompt('what changed?');
+  const v = w.agent('aeo:workflow-validator', 'release-validate-2', 'VERDICT: PASS', 0); const a2 = w.prompt('I approve Gate 10: go for run1 including the change to src/a.js');
+  w.setState({ current_run: 'run1', gates: { 9: { status: 'passed', ledger_seq: v.seq }, 10: { status: 'passed', approval_seq: a2 } } });
+  expect('G4 re-validation and re-approval unblock', w.verify(), 'PASS', [/state gate 10: PASS .*code unchanged/]); }
+{ const w = gitWorld('g5'); go(w);
+  w.git('checkout', '-q', 'main'); w.file('src/up.js', 'upstream\n'); w.git('add', 'src'); w.git('commit', '-q', '-m', 'upstream change');
+  w.git('checkout', '-q', 'feature'); w.git('rebase', '-q', 'main');
+  expect('G5 rebase (same diff, new base) voids the approval and lists the commits pulled in', w.verify(), 'FAIL', [/state gate 10: FAIL .*stale.*A src\/up\.js.*commits since: .*feature change.*upstream change|state gate 10: FAIL .*stale.*A src\/up\.js.*commits since: .*upstream change/]); }
+{ const w = gitWorld('g6'); const v9 = w.agent('aeo:workflow-validator', 'release-validate', 'VERDICT: PASS', 0);
+  w.file('src/a.js', 'changed after validation\n'); const a = w.prompt('I approve Gate 10: go for run1 as presented');
+  w.setState({ current_run: 'run1', gates: { 9: { status: 'passed', ledger_seq: v9.seq }, 10: { status: 'passed', approval_seq: a } } });
+  expect('G6 approving code that differs from what Gate 9 validated blocks', w.verify(), 'FAIL', [/state gate 10: FAIL .*not the code Gate 9 validated .*M src\/a\.js/]); }
+{ const w = new World('g7'); const v9 = w.agent('aeo:workflow-validator', 'release-validate', 'VERDICT: PASS', 0); const a = w.prompt('I approve Gate 10: go for run1');
+  w.setState({ current_run: 'run1', gates: { 9: { status: 'passed', ledger_seq: v9.seq }, 10: { status: 'passed', approval_seq: a } } });
+  expect('G7 no git repository: go approval cannot be bound', w.verify(), 'INCONCLUSIVE', [/state gate 10: INCONCLUSIVE .*no code hash recorded/]); }
+{ const w = gitWorld('g8'); w.file('src/a.js', 'unstaged edit\n'); w.git('add', 'src/b.js'); const before = w.git('status', '--porcelain'); go(w); w.verify();
+  const ok = w.git('status', '--porcelain') === before;
+  results.push(ok); console.log(`${ok ? 'PASS' : 'FAIL'}  G8 hashing leaves the user's staging area and files untouched`); }
+
 const bad = results.filter((x) => !x).length;
 console.log(`\n${results.length - bad}/${results.length} ledger tests passed`);
 process.exit(bad ? 1 : 0);
